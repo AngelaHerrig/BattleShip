@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BattleShipApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BattleShipApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BattleShipApplication.class, args);
+    }
 
 }
