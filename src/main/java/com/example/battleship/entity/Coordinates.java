@@ -10,6 +10,7 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
+@EqualsAndHashCode //vergleicht Werte anstatt Speicherort des Objekts
 public class Coordinates {
 
     private Integer x;

@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+
+  # battleships-db
+  battleships-db:
+    image: postgres
+    container_name: battleships-db
+    ports:
+      - 5532:5432
+    environment:
+      - TZ=Europe/Berlin
+      - POSTGRES_USER=battleship
+      - POSTGRES_PASSWORD=battleship
+      - POSTGRES_DB=battleship
+    restart: always

@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,10 +21,21 @@ public class GameController {
 
     private final ModelMapper modelMapper;
 
-    @PutMapping
 
-    public ResponseEntity<Game> placeShips(@Valid @RequestBody GameDtoUpdate gameDtoUpdate) {
-        Game game = modelMapper.map(gameDtoUpdate,Game.class);
-        return new ResponseEntity<>(gameService.placeShips(game), HttpStatus.OK);
+
+
+//    @PostMapping
+//    public ResponseEntity<Game> create() {
+//        return new ResponseEntity<>(gameService.createGame(), HttpStatus.CREATED);
+//    }
+
+    @PutMapping("/{id}/placeShips")
+    public ResponseEntity<Game> placeShips() {
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/fire")
+    public ResponseEntity<Game> fire() {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
