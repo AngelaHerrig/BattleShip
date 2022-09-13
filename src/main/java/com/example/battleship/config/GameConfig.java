@@ -13,9 +13,9 @@ public class GameConfig {
     public static Map<ShipType, Integer> ships = new HashMap<>();
 
     static {
-        ships.put(ShipType.SHIP_1, 4);
-        ships.put(ShipType.SHIP_2, 3);
-        ships.put(ShipType.SHIP_3, 2);
-        ships.put(ShipType.SHIP_4, 1);
+        ships.put(ShipType.PAPRIKA, 4);
+        ships.put(ShipType.CHEESE_AND_ONION, 3);
+        ships.put(ShipType.SOUR_CREAM, 2);
+        ships.put(ShipType.SALT_AND_VINEGAR, 1);
     }
 }
