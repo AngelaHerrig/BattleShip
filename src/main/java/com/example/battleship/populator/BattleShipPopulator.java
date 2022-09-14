@@ -10,6 +10,7 @@ import com.example.battleship.repository.FieldRepository;
 import com.example.battleship.repository.GameRepository;
 import com.example.battleship.repository.ShipRepository;
 import com.example.battleship.repository.TurnRepository;
+import com.example.battleship.service.KIService;
 import com.example.battleship.service.ShipService;
 import com.example.battleship.util.GameUtil;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class BattleShipPopulator implements CommandLineRunner {
     private final GameRepository gameRepository;
 
     private final ShipService shipService;
+    private final KIService kiService;
 
     @Override
     public void run(String...args){
@@ -49,8 +51,10 @@ public class BattleShipPopulator implements CommandLineRunner {
 
         Set<Ship> ships = new HashSet<>((Arrays.asList(type1_ship1,type1_ship2,type1_ship3,type1_ship4,type2_ship1,type2_ship2,type2_ship3,type3_ship1,type3_ship2,type4_ship1)));
 
+
         Game game1 = new Game();
         game1.getFieldPlayerOne().setShips(ships);
+//        game1.getFieldPlayerTwo().setShips(kiService.placeShips());
         gameRepository.save(game1);
 
         Turn turn1 = new Turn();
@@ -60,6 +64,7 @@ public class BattleShipPopulator implements CommandLineRunner {
         GameUtil.drawFields(game1);
 
         shipService.getShipAndSurroundingCoordinates(type2_ship2);
+
     }
 
 }

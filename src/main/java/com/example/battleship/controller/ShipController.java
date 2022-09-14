@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("battleship")
+@RequestMapping("battleship/ship")
 @RequiredArgsConstructor
 public class ShipController {
 

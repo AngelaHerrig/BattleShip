@@ -1,5 +1,6 @@
 package com.example.battleship.service;
 
+import com.example.battleship.config.GameConfig;
 import com.example.battleship.entity.Coordinates;
 import com.example.battleship.entity.Ship;
 import com.example.battleship.enumeration.Orientation;
@@ -7,9 +8,8 @@ import com.example.battleship.repository.ShipRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -52,6 +52,31 @@ public class ShipService {
         }
 
         return surroundingCoordinates;
+    }
+
+    public Boolean isShipPlacedEntirelyOnTheField(Ship ship) {
+        final int x = ship.getCoordinates().getX();
+        final int y = ship.getCoordinates().getY();
+        final int length = ship.getShipType().length;
+
+        if (x < 1 || x > GameConfig.width || y < 1 || y > GameConfig.height)
+            return false;
+
+        if (ship.getOrientation().equals(Orientation.HORIZONTAL)) {
+            return (x + length - 1) <= GameConfig.width;
+        } else {
+            return (y + length - 1) <= GameConfig.height;
+        }
+    }
+
+    public Boolean isShipPlacementValid(Ship ship, Set<Ship> otherShips) {
+        if (!isShipPlacedEntirelyOnTheField(ship))
+            return false;
+
+        Set<Coordinates> clearanceCoordinates = this.getShipAndSurroundingCoordinates(ship);
+        Set<Coordinates> otherCoordinates = otherShips.stream().map(this::getAllCoordinatesFromShip).flatMap(Collection::stream).collect(Collectors.toSet());
+
+        return Collections.disjoint(clearanceCoordinates, otherCoordinates);
     }
 
 }

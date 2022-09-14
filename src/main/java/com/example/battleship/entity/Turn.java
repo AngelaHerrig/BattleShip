@@ -19,7 +19,7 @@ public class Turn {
     private Integer turn;
 
     @Enumerated(value = EnumType.STRING)
-    private Player player;
+    private Player player = Player.PLAYER_ONE;
 
     private Coordinates coordinates;
 
